@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="/js/lib/jquery-1.9.1.js"></script>
+	<script src="/js/lib/angular.min.js"></script>
+	<script src="/js/app/main.js"></script>
+</head>
+<body>
+	<div ng-controller="index-ctr">
+		<ul>
+			<li ng-repeat="item in items">
+				<span>{{item.id}}</span>
+				<span>{{item.name}}</span>
+				<span>{{item.url}}</span>
+				<span>{{item.alexa}}</span>
+				<span>{{item.country}}</span>
+			</li>
+		</ul>
+		<button>Add</button>
+	</div>
+</body>
+</html>
