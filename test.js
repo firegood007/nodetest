@@ -1,26 +1,16 @@
-var mysql  = require('mysql');  
- 
-var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : 'root',       
-  port: '3306',                   
-  database: 'test', 
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : '192.168.1.101',
+  user     : 'root',
+  password : 'root',
+  database : 'test'
 }); 
- 
-connection.connect();
- 
-var modSql = 'UPDATE websites SET name = ?,url = ? WHERE Id = ?';
-var modSqlParams = ['菜鸟移动站', 'https://m.runoob.com',6];
-//改
-connection.query(modSql,modSqlParams,function (err, result) {
-   if(err){
-         console.log('[UPDATE ERROR] - ',err.message);
-         return;
-   }        
-  console.log('--------------------------UPDATE----------------------------');
-  console.log('UPDATE affectedRows',result.affectedRows);
-  console.log('-----------------------------------------------------------------\n\n');
+
+
+ connection.connect();
+
+
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The solution is: ', results[0].solution);
 });
- 
-connection.end();

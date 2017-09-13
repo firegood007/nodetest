@@ -5,7 +5,7 @@ var check = function(connection, res) {
 	      console.log('[SELECT ERROR] - ',err.message);
 	      return;
 	    }
-	    res.end(JSON.stringify(result));
+	    res.send(JSON.stringify(result));
 	    
 	});
 	//connection.end();

@@ -6,19 +6,71 @@
 	<script src="/js/lib/jquery-1.9.1.js"></script>
 	<script src="/js/lib/angular.min.js"></script>
 	<script src="/js/app/main.js"></script>
+	<style>
+		.content {padding-left: 20px;width: 100%;}
+		button {cursor: pointer;}
+		input {width:100%;}
+		input.search {width: 150px;}
+		table {border: 1px solid #666; border-bottom: none;}
+		table td, table th {border-bottom: 1px solid #666; border-right: 1px solid #666; padding-left: 10px;}
+		table td:last-child, table th:last-child {border-right:none;}
+		/*table tr:last-child td {border-bottom:none;}*/
+		.inline {display: inline-block; vertical-align: top}
+		
+		.close {font-size: 20px; display:flex; margin-left:20px; cursor: pointer; width: 20px; height: 20px;  justify-content: center;align-items: center;}
+		.close:hover {background: #000; color:#fff;}
+	</style>
 </head>
 <body>
-	<div ng-controller="index-ctr">
-		<ul>
-			<li ng-repeat="item in items">
-				<span>{{item.id}}</span>
-				<span>{{item.name}}</span>
-				<span>{{item.url}}</span>
-				<span>{{item.alexa}}</span>
-				<span>{{item.country}}</span>
-			</li>
-		</ul>
-		<button>Add</button>
+	<div ng-controller="index-ctr" class="content">
+		<h2>增删改查DEMO</h2>
+		<table cellspacing="0" cellpadding="5">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>域名</th>
+					<th>网址</th>
+					<th>点击量</th>
+					<th>国家</th>
+					<th width="80">删除/其他</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items track by $index">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td><a ng-href="item.url">{{item.url}}</a></td>
+					<td>{{item.alexa}}</td>
+					<td>{{item.country}}</td>
+					<td class="close-box"><span class="close" ng-click="delete(item.id)">x</span></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td><input class="js-upAdd" type="text" ng-model="addId" placeholder="请输入ID"></td>
+					<td><input type="text" ng-model="addName" placeholder="请输入域名"></td>
+					<td><input type="text" ng-model="addWeb" placeholder="请输入网址"></td>
+					<td><input type="text" ng-model="addNum" placeholder="请输入点击量"></td>
+					<td><input type="text" ng-model="addCountry" placeholder="请输入国家"></td>
+					<td><button ng-click="add()">添加</button></td>
+				</tr>
+				<tr>
+					<td colspan="5" style="text-align:right"><input class="search" type="text" ng-model="checkId" placeholder="请输入ID"></td>
+					<td><button ng-click="checkout()">搜索</button></td>
+				</tr>
+				<tr>
+					<td><input class="js-upDate" type="text" ng-model="updateId" placeholder="请输入ID"></td>
+					<td><input type="text" ng-model="updateName" placeholder="请输入域名"></td>
+					<td><input type="text" ng-model="updateWeb" placeholder="请输入网址"></td>
+					<td><input type="text" ng-model="updateNum" placeholder="请输入点击量"></td>
+					<td><input type="text" ng-model="updateCountry" placeholder="请输入国家"></td>
+					<td><button ng-click="update()">修改</button></td>
+				</tr>
+			</tbody>
+			<tbody>
+				
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
