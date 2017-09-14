@@ -7,6 +7,10 @@
 	<script src="/js/lib/angular.min.js"></script>
 	<script src="/js/app/main.js"></script>
 	<style>
+		a {cursor: pointer;}
+		.sort a{ font-size: 16px; color:blue; font-weight:normal;}
+		.sort a:first-child{margin-right: 20px;}
+		.sort a:last-child{margin-left: 20px;}
 		.content {padding-left: 20px;width: 100%;}
 		button {cursor: pointer;}
 		input {width:100%;}
@@ -27,7 +31,7 @@
 		<table cellspacing="0" cellpadding="5">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th class="sort"><a ng-click="sort('asc')">正序</a>ID<a ng-click="sort('desc')">降序</a></th>
 					<th>域名</th>
 					<th>网址</th>
 					<th>点击量</th>
@@ -55,7 +59,11 @@
 					<td><button ng-click="add()">添加</button></td>
 				</tr>
 				<tr>
-					<td colspan="5" style="text-align:right"><input class="search" type="text" ng-model="checkId" placeholder="请输入ID"></td>
+					<td><input type="text" ng-model="checkId" placeholder="请输入ID"></td>
+					<td><input type="text" ng-model="checkName" placeholder="请输入域名"></td>
+					<td><input type="text" ng-model="checkWeb" placeholder="请输入网址"></td>
+					<td><input type="text" ng-model="checkNum" placeholder="请输入点击量"></td>
+					<td><input type="text" ng-model="checkCountry" placeholder="请输入国家"></td>
 					<td><button ng-click="checkout()">搜索</button></td>
 				</tr>
 				<tr>

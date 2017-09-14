@@ -13,7 +13,8 @@ var check = require('./all-check');
 var checkItem = require('./item-check');
 var addItem = require('./item-add');
 var del = require('./item-delete');
-var updateItem = require('./item-update')
+var updateItem = require('./item-update');
+var sortItem = require('./item-sort');
 
 connection.connect();
 
@@ -26,8 +27,9 @@ app.get('/testData' ,function(req, res) {
 	check(connection, res);
 });
 app.get('/checkItem', function(req, res) {
-	var id = req.query.id;
-	checkItem(connection, res, id);
+	var param = req.query;
+	console.log(param, '3333333333333333333');
+	checkItem(connection, res, param);
 });
 app.post('/addItem', function(req, res) {
 	var param = req.body;
@@ -42,6 +44,11 @@ app.post('/deleteItem', function(req, res) {
 app.post('/updateItem', function(req, res) {
 	var param = req.body;
 	updateItem(connection, res, param);
+
+});
+app.get('/sortItem', function(req, res) {
+	var type = req.query.type;
+	sortItem(connection, res, type);
 
 });
 var server = app.listen(8081, function () {

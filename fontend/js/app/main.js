@@ -4,6 +4,7 @@ app.controller('index-ctr', ['$scope', '$http', function($scope, $http){
 	$scope.checkId = '';
 	$scope.test = 1;
 	$scope.correlateTest = $scope.test + 1;
+
 	$http.get('/testData')
 	.success(function(data) {
 		$scope.items = data;
@@ -11,14 +12,21 @@ app.controller('index-ctr', ['$scope', '$http', function($scope, $http){
 	.error(function() {
 		console.log('fail')
 	})
+
 	$scope.checkout = function() {
+		var param = {
+			id: $scope.checkId || '',
+			name: $scope.checkName || '',
+			url: $scope.checkWeb || '',
+			alexa: $scope.checkNum || '',
+			country: $scope.checkCountry || ''
+		};
 		$http({
 			url: '/checkItem',
-			params: {id: $scope.checkId},
+			params: param,
 			method: 'get'
 		}).success(function(res) {
 			$scope.items = res;
-			$scope.test = 10;
 		}).error(function(err) {
 			console.log(err);
 		});
@@ -70,5 +78,17 @@ app.controller('index-ctr', ['$scope', '$http', function($scope, $http){
 		}).error(function() {
 			console.log('fail');
 		})
+	}
+	$scope.sort = function(type) {
+		$http({
+			url: '/sortItem',
+			params: {type: type},
+			method: 'get'
+		}).success(function(res) {
+			console.log(res);
+			$scope.items = res;
+		}).error(function(err) {
+			console.log(err);
+		});
 	}
 }])
