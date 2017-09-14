@@ -91,4 +91,7 @@ app.controller('index-ctr', ['$scope', '$http', function($scope, $http){
 			console.log(err);
 		});
 	}
+	$scope.refresh = function() {
+		window.location.reload();
+	}
 }])
